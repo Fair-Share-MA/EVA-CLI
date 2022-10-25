@@ -33,7 +33,7 @@ def override_jaro_similarity(target, df):
     if (target in df.columns):
         return target
 
-    for alias in mime_types.comparision_overrides[target]:
+    for alias in mime_types["comparision_overrides"][target]:
         if (alias in df.columns):
             return alias
     
@@ -42,7 +42,7 @@ def override_jaro_similarity(target, df):
 def find_closest_df_col(target, df):
     name = None
 
-    if (mime_types.comparision_overrides.has_key(target)):
+    if (target in mime_types["comparision_overrides"]):
         name = override_jaro_similarity(target, df)
     
     if (not name):
@@ -88,6 +88,6 @@ while current_merge < len(df):
 
 print("Merging complete. Exporting...")
 
-df_merge.to_csv('../output/export.csv')
+df_merge.to_csv(output_dir + '/export.csv')
 
 print("Export complete! Goodbye :)")
