@@ -14,7 +14,7 @@ def load_csv(file):
         f.seek(0)
         df.append(pd.read_csv(file, delimiter=dialect.delimiter))
 
-def find_closest_df_col(target, df):
+def find_jaro_similarity(target, df):
     max = 0
     name = None
     for column in df.columns:
@@ -29,6 +29,27 @@ def find_closest_df_col(target, df):
     if max < 0.75: name = None
     return name
 
+def override_jaro_similarity(target, df):
+    if (target in df.columns):
+        return target
+
+    for alias in mime_types.comparision_overrides[target]:
+        if (alias in df.columns):
+            return alias
+    
+    return None
+
+def find_closest_df_col(target, df):
+    name = None
+
+    if (mime_types.comparision_overrides.has_key(target)):
+        name = override_jaro_similarity(target, df)
+    
+    if (not name):
+        name = find_jaro_similarity(target, df)
+        
+    return name
+
 # NOTE: prioritises column names for df1
 def merge_df(df1, df2):
     temp = pd.DataFrame()
@@ -36,6 +57,8 @@ def merge_df(df1, df2):
         closest_df2_col = find_closest_df_col(col, df2)
         if (closest_df2_col):
             temp[col] = df1[col].tolist() + df2[closest_df2_col].tolist()
+        else:
+            temp[col] = df1[col].tolist()
 
     return temp
 
