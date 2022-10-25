@@ -65,6 +65,6 @@ while current_merge < len(df):
 
 print("Merging complete. Exporting...")
 
-df_merge.to_excel('../output/export.xlsx')
+df_merge.to_csv('../output/export.csv')
 
 print("Export complete! Goodbye :)")
