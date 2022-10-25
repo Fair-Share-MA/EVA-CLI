@@ -58,7 +58,7 @@ def merge_df(df1, df2):
         if (closest_df2_col):
             temp[col] = df1[col].tolist() + df2[closest_df2_col].tolist()
         else:
-            temp[col] = df1[col].tolist()
+            temp[col] = df1[col].tolist() + [""] * df2.shape[0]
 
     return temp
 

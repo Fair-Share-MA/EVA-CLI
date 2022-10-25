@@ -2,5 +2,7 @@
   "excel": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   "text": "text/plain",
   "delemiters": ["|", ";", ","],
-  "comparision_overrides": {}
+  "comparision_overrides": {
+    "Date 1st Ballot Received": ["Date 1st EV Ballot Received"]
+  }
 }

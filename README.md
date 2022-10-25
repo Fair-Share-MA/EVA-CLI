@@ -23,3 +23,11 @@ A comparision override is a key value pair that overrides the string matching al
 ```
 
 The key is the trigger. When merging 2 files, if the algorithm comes across `voter id` in the first file, it will try and match it to either `voter id`, `voter_id`, or `voter_registration_id` in the second file. If none of these are found in the second file, the normal string matching algorithm will be used.
+
+---
+
+## Caveats:
+
+Order of the files matters\*\*. The first file in the folder (alphabetical order) defines the headers that the rest of the files will use. While the overrides are useful in catching exceptions, make sure your lead file has the headers you want to minimise the number of overrides needed.
+
+To ensure the lead file is on top, name it something like `aaaa.csv`
