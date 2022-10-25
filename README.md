@@ -14,10 +14,10 @@
 
 ## Comparision overrides:
 
-A comparision override is a ket value pair that overrides the string matching algorithm normally used. For example:
+A comparision override is a key value pair that overrides the string matching algorithm normally used. For example:
 
 ```
-{
+"comparision_overrides": {
     "voter id": ["voter_id", "voter_registration_id"]
 }
 ```
